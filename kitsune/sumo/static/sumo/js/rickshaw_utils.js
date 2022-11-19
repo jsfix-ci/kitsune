@@ -984,7 +984,7 @@ export function Graph($elem, extra) {
         data = this.graph.stackedData[i];
         domainX = graph.x.invert(eventX);
 
-        domainIndexScale = d3.scale.linear()
+        domainIndexScale = d3.scaleLinear()
           .domain([data[0].x, data.slice(-1)[0].x])
           .range([0, data.length - 1]);
 
@@ -1091,7 +1091,7 @@ export function Graph($elem, extra) {
       d3.select(this.element).select('*').remove();
 
       var padding = 10;
-      scale = d3.scale.linear()
+      scale = d3.scaleLinear()
         .domain([this.scale, 0])
         .range([padding, h - padding]);
 
@@ -1100,12 +1100,12 @@ export function Graph($elem, extra) {
         .orient(this.side)
         .tickFormat(this.tickFormat);
 
-      svg = d3.select(this.element).append('svg:svg')
+      svg = d3.select(this.element).insert('svg:svg')
         .attr('width', w)
         .attr('height', h)
         .attr('class', 'rickshaw_graph y_axis');
 
-      group = svg.append('svg:g')
+      group = svg.insert('svg:g')
         .attr('class', 'y_ticks plain')
         .call(axis);
       if (this.side === 'left') {
@@ -1178,7 +1178,7 @@ export function Graph($elem, extra) {
       var domainX = graph.x.invert(eventX);
       var xMin = graph.window.xMin || data[0].x;
       var xMax = graph.window.xMax || data.slice(-1)[0].x;
-      var domainIndexScale = d3.scale.linear()
+      var domainIndexScale = d3.scaleLinear()
         .domain([xMin, xMax])
         .range([0, data.length - 1]);
 
